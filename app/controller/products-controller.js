@@ -1,4 +1,5 @@
 const constants = require('../libs/constants');
+const getUsdUah = require('../libs/currency-converter');
 
 class ProductsController {
 	constructor(model) {
@@ -33,6 +34,34 @@ productGet(req, res) {
 	}
 }
 
+
+usdPriceGet(req, res) {
+	const id = +req.params.id;
+	//console.log ("usdPriceGet", id);
+
+	try {
+		const product = this.model.getProduct(id);
+		const name = product.name;
+		const price = +product.price;
+
+			// get from privatbank api
+		getUsdUah(constants.currencyApiURL)
+		.then(usd_uah => {
+			console.log ("usdPriceGet", id, name, price, usd_uah);
+			res.send(constants.getUsdPriceMsg(name, price, usd_uah));
+		})
+		.catch(error => {
+			res.send(error.message);
+		});
+	} catch (error) {
+		if (error.message == constants.ERR_NO_PRODUCT) {
+			res.send(constants.getNoProductMsg(id));
+		} else {
+			res.send(error.message);
+		}
+	}
+}
+
 productPost(req, res) {
 	this.model.addProduct(req.body);
 
@@ -52,6 +81,7 @@ productPut(req, res) {
 		}
 	}
 }
+
 // delete
 productDelete(req, res) {
 	const id = +req.params.id;

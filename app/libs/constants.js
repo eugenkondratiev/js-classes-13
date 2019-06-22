@@ -2,8 +2,8 @@ function getNoProductMsg(id) {
     return `There is no product with id=${id} in the list`;
 };
 
-function getUsdPriceMsg(productPrice, usdUah) {
-    return `Price for this in USD = ${(productPrice / usdUah).toFixed(2)}`;
+function getUsdPriceMsg(productName = 1 , productPrice = 33 , usdUah = 26.9 ) {
+    return `Price for product "${productName}" in USD is $${(productPrice / usdUah).toFixed(2)}`;
 };
 
 
@@ -14,5 +14,7 @@ module.exports = {
     msgProductAdded : 'Product was succesfully added',
     msgProductDeleted : 'Product was succesfully deleted',
     msgProductUpdated : 'Product was succesfully updated',
+    currencyApiURL : 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
+
 }
 

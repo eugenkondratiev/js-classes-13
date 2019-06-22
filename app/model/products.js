@@ -62,7 +62,7 @@ class Model {
 //=========================================
     updateProduct(_id, newProduct) {
         const product = products.find(el => el.id === +_id);
-        console.log(_id, product);
+       // console.log(_id, product);
         if (!product) throw new Error(constants.ERR_NO_PRODUCT);
     
         const {id, name, units, quantity, price} = newProduct;

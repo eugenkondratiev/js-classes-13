@@ -9,6 +9,7 @@ class Router {
 	this.commonGet(productsController.commonGet);
 	this.productsGet(productsController.productsGet);
 	this.productGet(productsController.productGet);
+	this.usdPriceGet(productsController.usdPriceGet);
 
 	// …
 	this.productPost(productsController.productPost);
@@ -27,6 +28,10 @@ productsGet(callback) {
 
 productGet(callback) {
 	this.app.get('/api/v1/products/:id',  callback.bind(this.productsController));
+}
+
+usdPriceGet(callback) {
+	this.app.get('/api/v1/products/:id/usd',  callback.bind(this.productsController));
 }
 
 //post

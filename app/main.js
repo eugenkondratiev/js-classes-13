@@ -8,7 +8,7 @@ const host = '127.0.0.1';
 // const getPort = require('./gen-port');
 // const port = getPort.getFreePort();
 const port = 30000;
-const URL = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
+
 
 app.use(express.json());
 

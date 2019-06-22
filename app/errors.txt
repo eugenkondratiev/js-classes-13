@@ -1,0 +1,24 @@
+eugenkondratiev@eugenkondratiev-VirtualBox:/usr/local/lib$ sudo npm install -g request-promise --save
+/usr/local/lib
+├── UNMET PEER DEPENDENCY request@^2.34
+└─┬ request-promise@4.2.4 
+  └── UNMET PEER DEPENDENCY request@^2.34
+
+npm WARN request-promise@4.2.4 requires a peer of request@^2.34 but none was installed.
+npm WARN request-promise-core@1.1.2 requires a peer of request@^2.34 but none was installed.
+eugenkondratiev@eugenkondratiev-VirtualBox:/usr/local/lib$ sudo npm install -g request-promise-native --save
+/usr/local/lib
+├── UNMET PEER DEPENDENCY request@^2.34
+└─┬ request-promise-native@1.0.7 
+  └── UNMET PEER DEPENDENCY request@^2.34
+
+npm WARN request-promise-native@1.0.7 requires a peer of request@^2.34 but none was installed.
+npm WARN request-promise-core@1.1.2 requires a peer of request@^2.34 but none was installed.
+
+
+eugenkondratiev@eugenkondratiev-VirtualBox:/usr/local/lib$ npm ls request
+/usr/local/lib
+└── request@2.34.0 
+
+eugenkondratiev@eugenkondratiev-VirtualBox:/usr/local/lib$ npm -v request
+3.5.2

@@ -5,3 +5,8 @@ public
 routes
 views
 classes
+app.js
+bin/
+bin/**
+*.code-workspace
+public/stylesheets
