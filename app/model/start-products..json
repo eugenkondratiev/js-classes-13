@@ -1,0 +1,25 @@
+[
+	{
+    "id": 1,
+    "name": "banana",
+    "unit": "kg",
+    "quatity": 30,
+    "price": 32
+},
+{
+    "id": 2,
+    "name": "apple",
+    "unit": "kg",
+    "quatity": 10,
+    "price": 22
+
+},
+{
+    "id": 3,
+    "name": "peach",
+    "unit": "kg",
+    "quatity": 15,
+    "price": 60
+
+}
+]
