@@ -47,7 +47,7 @@ usdPriceGet(req, res) {
 			// get from privatbank api
 		getUsdUah(constants.currencyApiURL)
 		.then(usd_uah => {
-			console.log ("usdPriceGet", id, name, price, usd_uah);
+		//	console.log ("usdPriceGet", id, name, price, usd_uah);
 			res.send(constants.getUsdPriceMsg(name, price, usd_uah));
 		})
 		.catch(error => {

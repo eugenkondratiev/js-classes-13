@@ -1,45 +1,56 @@
 const constants = require('../libs/constants');
+const base = require('./products-base');
 
 let lastProductId = 0;
 
-const products = [
-	{
-    id: ++lastProductId,
-    name: 'banana',
-    unit: "kg",
-    quantity: 30,
-    price: 32
-},
-{
-    id: ++lastProductId,
-    name: "apple",
-    unit: "kg",
-    quantity: 10,
-    price: 22
+const products = [];
+// const products = [
+// 	{
+//     id: ++lastProductId,
+//     name: 'banana',
+//     unit: "kg",
+//     quantity: 30,
+//     price: 32
+// },
+// {
+//     id: ++lastProductId,
+//     name: "apple",
+//     unit: "kg",
+//     quantity: 10,
+//     price: 22
 
-},
-{
-    id: ++lastProductId,
-    name: "peach",
-    unit: "kg",
-    quantity: 15,
-    price: 60
+// },
+// {
+//     id: ++lastProductId,
+//     name: "peach",
+//     unit: "kg",
+//     quantity: 15,
+//     price: 60
 
-}
-];
+// }
+// ];
 
 class Model {
 	constructor() {
-        // console.log("Model created", this);
-        // console.log("this.getProducts() ", this.getProducts);
+        base.readProductsBase()
+            .then( data => {
+                JSON.parse(data).forEach(element => {
+                    ++lastProductId;
+                    products.push(element);
+                });;
 
+                console.log("products first read: \n", products);
+            })
+            .catch(err => {
+                console.log("read file err = " , err);
+            });
+            
     }
 
 	getProducts() {return products;}
     
     getProduct(id) {
         const product = products.find(el => el.id === +id);
-        //console.log(product);
         if (!product) throw new Error(constants.ERR_NO_PRODUCT);
 
         return product// логика извлечения продукта, например через find
@@ -56,13 +67,18 @@ class Model {
             price: price
         }
         products.push(product);
-
-        return product;
+        
+        try {
+            base.updateProductsBase(products);        
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            return product;
+        }
     }
 //=========================================
     updateProduct(_id, newProduct) {
         const product = products.find(el => el.id === +_id);
-       // console.log(_id, product);
         if (!product) throw new Error(constants.ERR_NO_PRODUCT);
     
         const {id, name, units, quantity, price} = newProduct;
@@ -72,17 +88,29 @@ class Model {
         product.quantity = quantity;
         product.price = price;
 
-        return product;
+        try {
+            base.updateProductsBase(products);        
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            return product;
+        }
     }
 //=========================================
     deleteProduct(id) { 
         const product = products.find(el => el.id === +id);
-        //console.log(id, product);
+
         if (!product) throw new Error(constants.ERR_NO_PRODUCT);
 
         const index = products.indexOf(product);
         products.splice(index, 1);
-        return true;
+        try {
+            base.updateProductsBase(products);        
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            return true;
+        }
     }
 
 }
