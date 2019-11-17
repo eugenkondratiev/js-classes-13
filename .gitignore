@@ -10,3 +10,6 @@ bin/
 bin/**
 *.code-workspace
 public/stylesheets
+
+libs/mail-options.js
+

@@ -1,6 +1,7 @@
 const fs = require('fs');
+const mailer = require('../libs/mail-options');
 
-const BASE_FILE_NAME = "app/model/products-base.json";
+const BASE_FILE_NAME = "model/products-base.json";
 
 function updateProductsBase(products) {
     const jsonProducts = JSON.stringify(products, null, ' ');
